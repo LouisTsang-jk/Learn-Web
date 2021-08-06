@@ -71,10 +71,10 @@ Pages
 const dispatch = useDispatch();
 // 调用
 dispatch({
-type: 'index/save',
-payload: {
-    name: 'hello'
-}
+  type: 'index/save',
+  payload: {
+      name: 'hello'
+  }
 });
 ```
 
