@@ -42,3 +42,12 @@
 # iphone6,7,8出现不换行的问题
 1. `white-space: normal`
 2. `word-break: break-all`
+
+
+# 页面出现滚动条出现跳动
+```
+.outside {
+  margin-left: calc(100vw - 100%);
+  // or padding
+}
+```
