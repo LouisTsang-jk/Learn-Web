@@ -12,8 +12,15 @@ React在进行渲染前会通过此属性进行校验，原因是`Symbol`类型�
 #### 批处理和事务
 
 
-
-
+#### Fiber
+工作原理
+> Fiber节点可以保存对应的DOM节点。Fiber节点构建对应的DOM树。
+- 双缓存
+React中最多同时存在两棵Fiber树。当前显示内容对应`current Fiber树`，在内存构建中的称为`workInProgress Fiber树`。两棵树之间的Fiber节点通过`alternate`属性连接。
+```
+crrentFiber.
+```
+- 
 ## 问题
 1. 有时候连续setState只有一次生效？
 - 直接传递对象的setState会被合并成一次
