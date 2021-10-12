@@ -14,6 +14,14 @@ React在进行渲染前会通过此属性进行校验，原因是`Symbol`类型�
 
 
 
+#### Fiber
+> Fiber reconciler在React 16中替换了React 15中原有的Stack reconsiler
+1. 能够把可中断的任务切片处理。
+2. 能够调整优先级，重置并复用任务。
+3. 能够在父元素与子元素之间交错处理，以支持 React 中的布局。
+4. 能够在 render() 中返回多个元素。
+5. 更好地支持错误边界。
+
 ## 问题
 1. 有时候连续setState只有一次生效？
 - 直接传递对象的setState会被合并成一次
