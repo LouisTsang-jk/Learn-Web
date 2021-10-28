@@ -19,3 +19,15 @@ WeakMap 对象是一组键/值对的集合，其中的键是弱引用的。其�
 
 # Object
 Object的键必须是一个String或者Symbol
+
+# 应用场景
+```
+ele.addEventListener('click', handler, false);
+```
+- - - 
+```
+const listener = new WeakMap();
+listener.set(ele, handler);
+ele.addEventListener('click', listener.get(ele), false);
+```
+这里ele消失，则绑定的监听函数handler也会自动消失。

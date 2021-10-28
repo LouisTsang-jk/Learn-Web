@@ -58,6 +58,13 @@ workInProgressFiber.alternate === currentFiber;
 
 -
 
+## Presentational and Container Components
+大致将平常的组件都分为展示组件和容器组件
+- 展示组件
+1. 描述如何展示(骨架、样式)
+2. 数据来源:props
+3. 数据修改:从props调用回调函数
+
 ## 问题
 
 1. 有时候连续 setState 只有一次生效？
