@@ -85,3 +85,5 @@
 
 > As of npm@7 these scripts run in the background. To see the output, run with: --foreground-scripts.
 > [Life-Cycle-operation-order](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-operation-order)
+  1. 关于husky为什么使用`prepare`而不是`postinstall`
+  [Docs suggestion: use "prepare" instead of "postinstall" #884](https://github.com/typicode/husky/issues/884)
