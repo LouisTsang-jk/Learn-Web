@@ -33,7 +33,7 @@
   }
   ```
 
-- ***`bin`**
+- **\*`bin`**
 
   自定义命令，新建一个命令与本地文件名做映射。例如`vue create`/`create-react-app`。
 
@@ -69,8 +69,19 @@
   }
   ```
 
-  
+  > `#! /usr/bin/env node`在文件顶部添加这句表示该文件使用`node`执行。
 
-  >  `#! /usr/bin/env node`在文件顶部添加这句表示该文件使用`node`执行。
+  ## script
 
-  
+  - `prepare`:
+    Runs any time before the package is packed, i.e. during npm publish and npm pack
+
+    - Runs BEFORE the package is packed
+    - Runs BEFORE the package is published
+    - Runs on local npm install without any arguments
+    - Run AFTER prepublish, but BEFORE prepublishOnly
+
+> NOTE: If a package being installed through git contains a prepare script, its dependencies and devDependencies will be installed, and the prepare script will be run, before the package is packaged and installed.
+
+> As of npm@7 these scripts run in the background. To see the output, run with: --foreground-scripts.
+> [Life-Cycle-operation-order](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-operation-order)
