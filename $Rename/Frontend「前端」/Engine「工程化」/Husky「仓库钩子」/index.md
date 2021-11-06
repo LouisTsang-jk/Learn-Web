@@ -16,3 +16,10 @@ valid the commit message
 npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 > husky会检测当前目录是否有.git文件夹，所以monorepo的时候需要注意。
+
+
+
+## compose package
+- commitlint
+
+- lint-staged
