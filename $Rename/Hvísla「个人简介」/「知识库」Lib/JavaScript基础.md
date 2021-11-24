@@ -1,0 +1,9 @@
+# JavaScript基础
+- 迭代
+- null/undefined
+- 事件
+  - 事件委托
+- typeof/indstanceof
+- 上下文
+- 作用域
+- 暂时性死区
