@@ -31,5 +31,54 @@ Context提供了一种在组件之间共享此类值的方式。可以将Context
 1. **受控组件**在使用表单收集用户输入的时候，`input`等元素会绑定一个`change`事件，当表单的状态发生变化，就会触发change事件。
 > 表单的值都是React组件进行管理，当有多个组件的值需要获取的时候就需要编写事件处理函数。
 2. **非受控组件**，如果一个表单组件没有`value props`时，就可以成为非受控组件，非受控组件可以通过一个ref来从DOM获取表单的值
+- 类组件和函数组件的区别
+    - **相同点**
+    1. 都是React可复用的最小代码片段，返回页面中渲染的React元素。
+    - **不同点**
+    1. 开发心智模型不一致。类组件面向对象(继承/生命周期等概念)。函数组件是函数式编程(immutable/无副作用/引用透明)。
+    2. 类组件通过`shouldComponentUpdate`阻断渲染来提升性能，函数组件则依靠`React.memo`缓存渲染结果来提升性能。
+    3. 类组件会因为生命周期带来的复杂度导致不易优化。
+- React setState调用的原理
+    1. 调用`setState`入口函数(分发器)，根据入参不同，分发到不同的功能函数中去。
+    ```
+        ReactComponent.prototype.setState = function (partialState, callback) {
+        this.updater.enqueueSetState(this, partialState);
+        if (callback) {
+            this.updater.enqueueCallback(this, callback, 'setState');
+        }
+        };
+    ```
+    2. `enqueueSetState`方法，将新的`state`放进组件的状态队列里，并调用`enqueueUpdate`来处理要更新的实例对象。
+    ```
+        enqueueSetState: function (publicInstance, partialState) {
+        // 根据 this 拿到对应的组件实例
+        var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'setState');
+        // 这个 queue 对应的就是一个组件实例的 state 数组
+        var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);
+        queue.push(partialState);
+        //  enqueueUpdate 用来处理当前的组件实例
+        enqueueUpdate(internalInstance);
+        }
+    ```
+    3. 在 enqueueUpdate 方法中引出了一个关键的对象——batchingStrategy，该对象所具备的isBatchingUpdates 属性直接决定了当下是要走更新流程，还是应该排队等待；如果轮到执行，就调用 batchedUpdates 方法来直接发起更新流程。由此可以推测，batchingStrategy 或许正是 React 内部专门用于管控批量更新的对象。
+    ```
+        function enqueueUpdate(component) {
+        ensureInjected();
+        // 注意这一句是问题的关键，isBatchingUpdates标识着当前是否处于批量创建/更新组件的阶段
+        if (!batchingStrategy.isBatchingUpdates) {
+            // 若当前没有处于批量创建/更新组件的阶段，则立即更新组件
+            batchingStrategy.batchedUpdates(enqueueUpdate, component);
+            return;
+        }
+        // 否则，先把组件塞入 dirtyComponents 队列里，让它“再等等”
+        dirtyComponents.push(component);
+        if (component._updateBatchNumber == null) {
+            component._updateBatchNumber = updateBatchNumber + 1;
+        }
+        }
+    ```
+    4. React中的setState批量更新的过程是什么？
+      调用`setState`时，组件的`state`并不会立即改变，`setState`只是把要修改的`state`放到一个队列，执行的时候会将多次`setState`的状态修改合并成一次状态修改，最终只产生一次组件及其子组件的重新渲染。
+
 # 参考
 [React面试题](https://juejin.cn/post/6941546135827775525)
