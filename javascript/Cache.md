@@ -32,7 +32,7 @@
 // 10s后失效
 res.setHeader('Cache-control', 'max-age=10')
 ```
-+ 协商缓存
+### 协商缓存
 1. 浏览器第一次跟服务器请求资源，服务器在返回的header上加`Last-Modified`表示这个资源在服务器最后修改时间。
 2. 浏览器再次请求该资源时，在header上加上`if-Modified-Since`。
 3. 如果服务器发现`if-Modified-Since`与该资源最后一次修改时间一致，则返回`304 Not Modified`。如果不一致就正常返回资源。

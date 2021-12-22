@@ -22,10 +22,13 @@
 ## sessionStorage
  为每一个给定的源（given origin）维持一个独立的存储区域，该存储区域在页面会话期间可用（即只要浏览器处于打开状态，包括页面重新加载和恢复）。
 ## localStorage
-
 ## API
 + `Storage.getItem()`
 + `Storage.setItem()`
 + `Storage.removeItem()`
 + `Storage.clear()`
 同样的功能，但是在浏览器关闭，然后重新打开后数据仍然存在。
+
+
+# IndexDB
+底层API，用于客户端存储大量的结构化数据。
