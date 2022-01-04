@@ -14,5 +14,4 @@ function quickSort(arr){
   })
   return [...quickSort(left),pivot,...quickSort(right)];
 }
-
 ```
