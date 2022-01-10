@@ -19,6 +19,7 @@
 触发`window.load`事件
 
 # async & defer(script属性)
+[async & defer](html/defer&async.md)
 
 # CSS
   ## 清除浮动
@@ -32,6 +33,7 @@
   ## BFC
   [BFC](css/ElementBox.md#BFC)
   ## 边距重叠
+  处在同一个BFC中的元素互相影响，可能发生margin collapse（边距重叠/边距坍塌）
   边界折叠(margin collapsing)
   以下三种情况会形成外边距重叠：
   + 同一层相邻元素之间
