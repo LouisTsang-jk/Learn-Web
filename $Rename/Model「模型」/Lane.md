@@ -1,7 +1,7 @@
 # Lane
 用于`React 17`的任务优先级模型。
 `Lane`用来替换原有的`expirationTime`，给任务划分优先级。
-## expiration Time
+## Expiration Time
 任务过期时间距离目前很近，表示任务优先级很高。
 ### 存在缺陷
 1. 无法处理任务交割(当一个页面有多个更新任务或者多个调度器)
