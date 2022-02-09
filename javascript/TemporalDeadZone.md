@@ -18,3 +18,6 @@ other code
 typeof apple;
 let apple; => Uncaught ReferenceError: apple is not defined
 ```
+
+
+[Hoisting in Modern JavaScript — let, const, and var](https://blog.bitsrc.io/hoisting-in-modern-javascript-let-const-and-var-b290405adfda?gif=true)
