@@ -1,22 +1,52 @@
 1. 简单请求/复杂请求
+简单请求满足以下两个条件：
+  - 请求方法是HEAD/GET/POST
+  - HTTP头信息不超出以下几个字段
+    - Accept
+    - Accept-Language
+    - Content-Language
+    - Last-Event-ID
+    - Content-Type只能是三值其一
+      - application/x-www-form-urlencoded
+      - multipart/form-data
+      - text/plain
+除简单请求外的请求都是复杂请求，其中Axios都是复杂请求
+> 复杂请求在正式请求之前都会有预检请求，在浏览器中都能看到有OPTIONS请求，用于向服务器请求权限信息
 2. 缓存中no-store和no-cache区别
+`no-store`: 禁用缓存
+`no-cache`: 使用缓存之前重新请求
 3. 常见 深克隆/浅克隆方式
 4. 常见Hook
+ - useState
+ - useEffect
+ - useContext
+ - useReducer
+ - useCallback
+ - useMemo
+ - useRef
+ - useImperativeHandle
+ - useLayoutEffect
+ - useDebugValue
 5. let和var的区别
 6. 观察者模式和订阅发布模式的区别
 7. 对称加密和非对称加密
+`对称加密`: 加密解密都是一个密钥
+`非对称加密`: 加密解密是两个密钥
 8. 除了bind、call、apply还有什么更改this指向的方法
+使用new也能改变this的指向
 9. jsx的本质
-10. React事件合成
-11. React.createElement参数
+React.createElement
+10. React.createElement参数
+11. React事件合成
+
 12. useEffect如何监听页面销毁
 13. Class组件和Hook组件区别
 14. cdn原理
 15. DNS过程
 16. 为什么React和Vue都需要虚拟DOM
 17. React数据流/组件间通信
+19. Vue数据流/组件间通信
 18. Vue和React的区别
-19. 有开发过什么比较难或者印象比较深刻的项目吗？
 20. Hook内部实现原理
 21. qiankun的微应用如何判断当前应用在基座上还是独立运行
 22. 如何实现类似Keep-alive的效果？(类似两个应用同时运行)
@@ -35,3 +65,4 @@
 35. 删除构造函数的原型对象会发生什么？
 36. 移动端除了REM以外还有其他解决响应式页面的方案吗？
 37. LocalStorage实现一定的时间后过期
+38. 有开发过什么比较难或者印象比较深刻的项目吗？
