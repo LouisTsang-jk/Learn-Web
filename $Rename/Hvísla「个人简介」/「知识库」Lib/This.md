@@ -1,4 +1,5 @@
 # This
+当前执行上下文（global、function 或 eval）的一个属性
 ## 绑定
 ### 显式绑定
 1. call(Apply Pattern)
