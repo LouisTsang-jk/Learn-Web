@@ -119,4 +119,4 @@ React自己实现了一套高效的事件注册，存储，分发和重用逻辑
 53. vue3中为什么使用`Proxy`替换原来的`Object.defineProperties`
 54. 请描述一下vue3的静态标记和事件监听器缓存(cacheHandlers)
 55. 如何将闭包中泄漏的内存进行释放？
-
+56. Symbol for
