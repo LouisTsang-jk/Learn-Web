@@ -53,8 +53,25 @@
 9. jsx的本质
 React.createElement
 10. React.createElement参数
+  参数：   
+  1. HTML标签名称。e.g.: ul、li
+  2. 属性。e.g.: className
+  3. 子节点。
 11. React事件合成
-
+React自己实现了一套高效的事件注册，存储，分发和重用逻辑。在DOM事件体系基础上改进，减少了内存消耗，简化事件逻辑，并最大化解决IE等浏览器的不兼容问题。与DOM事件体系相比，有以下特点：   
+  1. React组件上声明的事件最终绑定到`document`这个DOM节点上(react17注册到`root`)，而不是React组件对应的DOM节，简化了DOM原生事件，减少了内存开销。
+  2. React以队列的方式，从接触事件的组件向父组件回溯，调用在JSX中声明的callback。也就是React自身实现了一套事件冒泡机制。我们没办法使用`event.stopPropagation()`来停止事件传播，而应该使用`event.preventDefault()`。
+  3. React有自己一套的合成事件SyntheticEvent，不同类型的事件会构造不同的SyntheticEvent。
+  4. React使用对象池来管理合成事件对象的创建和销毁，这样减少了垃圾的生成和新对象内存分配，从而提高性能
+  优点：   
+  - 分层设计：解决跨平台问题
+  - 性能优化：使用事件代理统一接收原生事件的触发，从而使真实DOM上不需要绑定事件
+  - 挟持事件：对事件进行归类，可以在事件产生的任务上包含不同的优先级，最终决定对应的更新应该在什么时机进行
+  - 提供合成事件对象：抹平浏览器的兼容性差异
+  主要整个事件系统分为三部分：   
+  1. 事件注册
+  2. 事件存储
+  3. 事件执行
 12. useEffect如何监听页面销毁
 13. Class组件和Hook组件区别
 14. cdn原理
@@ -85,6 +102,7 @@ React.createElement
 39. 有了解过pnpm吗？
 40. 正则的贪婪如何写？
 41. TS的高级类型有哪些？
+  -
 42. 使用Hook有什么坑或者注意的地方？
 43. react17的新特性有了解吗？
 44. 为什么数组的插入比链表复杂？
@@ -96,3 +114,9 @@ React.createElement
 48. 为什么需要Map
 49. TCP滑动窗口
 50. 判断链表是否有环
+51. DPI/PPI/设备像素/独立像素
+52. postCSS的REM处理流程
+53. vue3中为什么使用`Proxy`替换原来的`Object.defineProperties`
+54. 请描述一下vue3的静态标记和事件监听器缓存(cacheHandlers)
+55. 如何将闭包中泄漏的内存进行释放？
+
