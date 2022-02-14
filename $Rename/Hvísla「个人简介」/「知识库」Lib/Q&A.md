@@ -181,6 +181,8 @@
   - 使用useReducer
 61. useEffect返回函数的执行时机
 62. 为什么需要useImperativeHandel
+> 子组件利用useImperativeHandle可以让父组件输出任意数据。
+我们都知道父组件可以利用ref可以访问子组件实例或者DOM元素，这其实相当于子组件向父组件输出本身实例或者DOM元素。而利用useImperativeHandle子组件可以向父组件输出任意数据。
 63. monorepo的优点和其他解决方案
   - 抽离多个重复配置文件
     一份配置文件就可以用来构建所有的包
