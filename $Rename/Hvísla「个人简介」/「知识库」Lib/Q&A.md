@@ -92,6 +92,30 @@
 11. React 事件合成
    [React 事件合成](/$Rename/Hvísla「个人简介」/「知识库」Lib/React事件合成.md)
 12. useEffect 如何监听页面销毁
+  - componentDidMount
+  ```
+  useEffect(() => { ... }, [])
+  ```
+  - componentDidUpdate
+  没有第二个参数代表监听所有的属性更新
+  ```
+  useEffect(() => { ... })
+  ```
+  监听多个属性
+  ```
+  useEffect(() => { ... }, [n, m])
+  ```
+  - componentWillUnmount
+  通常组件卸载时需要清除effect创建的订阅或者计时器ID等资源
+  ```
+  useEffect(() => {
+    const timer = setTimeout(() => { ... }, 1000);
+    return () => {
+      clearTimerout(timer);
+    }
+  })
+  ```
+  > useEffect函数返回的函数可以表示组件销毁执行
 13. Class 组件和 Hook 组件区别
 14. cdn 原理
 15. DNS 过程
@@ -126,6 +150,8 @@
 
 42. 使用 Hook 有什么坑或者注意的地方？
 43. react17 的新特性有了解吗？
+  - 事件合成的三处改动
+  
 44. 为什么数组的插入比链表复杂？
 45. interface 和 type 的区别？
 
@@ -137,10 +163,14 @@
 48. 为什么需要 Map
 49. TCP 滑动窗口
 50. 判断链表是否有环
+  - hash
+  - 快慢指针
 51. DPI/PPI/设备像素/独立像素
 52. postCSS 的 REM 处理流程
 53. vue3 中为什么使用`Proxy`替换原来的`Object.defineProperties`
 54. 请描述一下 vue3 的静态标记和事件监听器缓存(cacheHandlers)
 55. 如何将闭包中泄漏的内存进行释放？
-56. Symbol for
+56. Symbol.for
+> 场景：重新使用同一个`Symbol`
+方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。
 57. 如何用代码去体现 Map 和 WeakMap 区别？
