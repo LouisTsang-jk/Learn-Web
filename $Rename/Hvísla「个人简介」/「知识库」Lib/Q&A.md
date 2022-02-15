@@ -198,7 +198,7 @@ Type通过从中选择所有属性然后删除Keys
 42. 使用 Hook 有什么坑或者注意的地方？
    - 要在React函数内
    - 不能在循环体或者条件语句里
-   - 闭包
+   - 闭包导致渲染旧值，可以用ref处理
 43. react17 的新特性有了解吗？
   - 事件合成的三处改动
 
@@ -253,8 +253,44 @@ Type通过从中选择所有属性然后删除Keys
 箭头函数没有自己的this、arguments、super、new
 66. 错误拦截的方法
 67. 为什么js是单线程的，有什么优点和缺点？
+优点：
+  - 多线程会有复杂的同步问题：线程A在某个节点上新增内容，线程B删除了该节点
+缺点：
 68. 事件执行栈是什么
+所有的任务分为同步任务和异步任务。    
+同步任务在主线程上排队执行(形成一个执行栈)，异步任务不进入主线程、而进入任务队列，当任务队列通知主线程，某个异步任务可以执行，该任务才会进入主线程执行。
+  - 执行栈
+  所有的js都在执行上下文中进行的(全局执行上下文/函数执行上下文/Eval执行上下文)，当引擎第一次遇到js代码就会产生一个全局执行上下文并压入执行栈；每遇到一个函数调用就往栈中压入一个新的上下文。引擎执行栈顶的函数，执行完毕弹出当前执行上下文。
+  - 调用栈
+  ```
+  const second = () => {
+    console.log('Hello there!')
+  }
+  const first = () => {
+    console.log('Hi there!');
+    second();
+    console.log('The End');
+  }
+  first();
+  ```
+  - main()
+  - main() <- first()
+  - main() <- first() <- console.log('Hi there!')
+  - main() <- first() <- second() <- console.log('Hello there!') 
+  - main() <- first() <- second() <- console.log('The End');
+  - main() <- first() <- second()
+  - main() <- first()
+  - main()
 69. 如何自定义原生事件
+```
+var event = new Event('build');
+
+// Listen for the event.
+elem.addEventListener('build', function (e) { ... }, false);
+
+// Dispatch the event.
+elem.dispatchEvent(event);
+```
 70. 最近chrome限制的same-site是怎么回事
 71. setState是同步还是异步
 `isBatchingUpdates`决定是否异步，默认为false表示不会让setState异步执行。
