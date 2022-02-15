@@ -39,6 +39,7 @@ Array.prototype.cal=function(num){
 + Number
 + String
 + Symbol
++ BigInt
 
 # 4. in和hasOwnProperty
 ## in 

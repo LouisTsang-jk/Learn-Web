@@ -1,14 +1,22 @@
-1. 简单请求/复杂请求
-   简单请求满足以下两个条件：
-
-- 请求方法是 HEAD/GET/POST
-- HTTP 头信息不超出以下几个字段 - Accept - Accept-Language - Content-Language - Last-Event-ID - Content-Type 只能是三值其一 - application/x-www-form-urlencoded - multipart/form-data - text/plain
-  除简单请求外的请求都是复杂请求，其中 Axios 都是复杂请求
-  > 复杂请求在正式请求之前都会有预检请求，在浏览器中都能看到有 OPTIONS 请求，用于向服务器请求权限信息
-
+1. `简单请求/复杂请求`   
+  简单请求满足以下两个条件：
+  - 请求方法是 HEAD/GET/POST
+  - HTTP 头信息不超出以下几个字段
+    - Accept
+    - Accept-Language
+    - Content-Language
+    - Last-Event-ID
+    - Content-Type 只能是三值其一
+      - application/x-www-form-urlencoded
+      - multipart/form-data
+      - text/plain
+    除简单请求外的请求都是复杂请求，其中 Axios 都是复杂请求
+    > 复杂请求在正式请求之前都会有预检请求，在浏览器中都能看到有 OPTIONS 请求，用于向服务器请求权限信息
+  ---
 2. 缓存中 no-store 和 no-cache 区别
    `no-store`: 禁用缓存
    `no-cache`: 使用缓存之前重新请求
+---
 3. 常见 深克隆/浅克隆方式
 
 - 浅克隆
@@ -33,25 +41,25 @@
       cloneObj[key] = obj[key];
     }
   ```
+---
   4. `Object.keys`
-- 深克隆
-  将一个对象从内存中完整的拷贝一份出来，从堆内存中开辟一个新的区域存放新对象，且修改新对象不会影响原对象。
+  - 深克隆
+    将一个对象从内存中完整的拷贝一份出来，从堆内存中开辟一个新的区域存放新对象，且修改新对象不会影响原对象。
 
-  1. JSON.parse(JSON.stringify());
-     缺点：
+    1. `JSON.parse(JSON.stringify())`   
+      > 缺点：
+      > - 拷贝引用类型
+      > - 函数
+      > - 循环引用
 
-     - 拷贝引用类型
-     - 函数
-     - 循环引用
-
-  2. 递归
-     操作比较复杂，需要进行很多判断：
-
-     - 数组，如果是数组则直接创建数组
-     - 循环引用，需要额外开辟一个存储空间，来存储当前对象和拷贝对象的对应关系，当需要拷贝当前对象的时候就去存储空间中查找；一般我们可以选择 WeakMap 这种数据结构，因为 Map 的话对象间可能存在强引用关系，导致内存无法被释放
-     - function
-     - null
-     - Symbol
+    2. `递归`   
+      > 操作比较复杂，需要进行很多判断：
+      > - 数组，如果是数组则直接创建数组
+      > - 循环引用，需要额外开辟一个存储空间，来存储当前对象和拷贝对象的对应关系，当需要拷贝当前对象的时候就去存储空间中查找；一般我们可以选择 WeakMap 这种数据结构，因为 Map 的话对象间可能存在强引用关系，导致内存无法被释放
+      > - function
+      > - null
+      > - Symbol
+---
 
 4. 常见 Hook
 
@@ -65,33 +73,40 @@
 - useImperativeHandle
 - useLayoutEffect
 - useDebugValue
+---
 
 5. let 和 var 的区别
 
 - 作用域不同。var 是函数作用域，let 是块作用域
 - let 有暂时性死区
 - let 不能被重新定义，var 可以
-
+---
 6. 观察者模式和发布订阅模式的区别
    观察者具有高内聚的特点，适合同模块或者同一组件内使用；
    当需要监听的对象和执行动作不在同一模块或者组件中，使用发布订阅模式可以做到很好的解耦的同时不会破坏封装。
    > 在发布订阅模式里，发布者不会直接通知订阅者，换句话说这两者互补认识，即两者完全解耦。
    > 简单来说发布订阅模式中多了个中转的函数。
+---
 7. 对称加密和非对称加密
    `对称加密`: 加密解密都是一个密钥
    `非对称加密`: 加密解密是两个密钥
+---
 8. 除了 bind、call、apply 还有什么更改 this 指向的方法
    使用 new 也能改变 this 的指向
+---
 9. jsx 的本质
    React.createElement
+---
 10. React.createElement 参数
-   参数：
-  1. HTML 标签名称。e.g.: ul、li
-  2. 属性。e.g.: className
-  3. 子节点。
+  > 参数：
+  > 1. HTML 标签名称。e.g.: ul、li
+  > 2. 属性。e.g.: className
+  > 3. 子节点。
+---
 11. React 事件合成
    [React 事件合成](/$Rename/Hvísla「个人简介」/「知识库」Lib/React事件合成.md)
-12. useEffect 如何监听页面销毁
+---
+12. useEffect 模拟生命周期
   - componentDidMount
   ```
   useEffect(() => { ... }, [])
@@ -109,22 +124,26 @@
   通常组件卸载时需要清除effect创建的订阅或者计时器ID等资源
   ```
   useEffect(() => {
-    const timer = setTimeout(() => { ... }, 1000);
+    const timer = setTimeout((=> { ... }, 1000);
     return () => {
       clearTimerout(timer);
     }
   })
   ```
   > useEffect函数返回的函数可以表示组件销毁执行
+---
 13. Class 组件和 Hook 组件区别
   - Hook
     - 写法更加简洁
     - 业务代码更加聚合：有时候写业务会忘记清理计时器造成内存泄漏
     - 逻辑更加方便
-    - 
+  - Class
+    - Class可以拿到中间状态
+---
 14. cdn 原理
 15. DNS 过程
 16. 为什么 React 和 Vue 都需要虚拟 DOM
+  - 减少操作DOM，任何页面的变化都是用虚拟DOM进行对比，
 17. React 数据流/组件间通信
  - 父 -> 子:props
  - 子 -> 父: 回调函数
@@ -162,6 +181,8 @@ window.__POWERED_BY_QIANKUN__可以判断是否在qiankun框架内
 - will-change
 不需要一直开启，因为移动端上耗电高，有些场景使用CPU处理更快
 30. 原型链的应用
+- 扩展数组的方法
+- 
 31. 组合寄生继承、寄生继承等继承方式的优缺点
 32. 300kb 的资源在正常网络请求下返回的时间大概是？
 33. 打包的优化手段
@@ -266,6 +287,7 @@ Type通过从中选择所有属性然后删除Keys
   - infrastructureLog
   - log
 47. Proxy 和 Reflect
+
 48. 为什么需要 Map
 对象的key只能是字符串或者数字，Map的key可以是任意值。
 49. TCP 滑动窗口
@@ -355,3 +377,4 @@ chrome80会默认(SameSite: lax)在跨域请求的情况下不允许携带cookie
 `isBatchingUpdates`决定是否异步，默认为false表示不会让setState异步执行。
 > 简单来说就是经过React处理的事件是不会同步更新；通过addEventListener || setTimeout / setInterval
 72. Symbol的作用是什么，为什么需要？
+73. new的执行过程
