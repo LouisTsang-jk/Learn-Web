@@ -117,10 +117,19 @@
   ```
   > useEffect函数返回的函数可以表示组件销毁执行
 13. Class 组件和 Hook 组件区别
+  - Hook
+    - 写法更加简洁
+    - 业务代码更加聚合：有时候写业务会忘记清理计时器造成内存泄漏
+    - 逻辑更加方便
+    - 
 14. cdn 原理
 15. DNS 过程
 16. 为什么 React 和 Vue 都需要虚拟 DOM
 17. React 数据流/组件间通信
+ - 父 -> 子:props
+ - 子 -> 父: 回调函数
+ - 跨级组件: 逐层props/context
+ - redux
 18. Vue 数据流/组件间通信
   1. props/$emit
   2. ref
@@ -252,6 +261,7 @@ Type通过从中选择所有属性然后删除Keys
   - log
 47. Proxy 和 Reflect
 48. 为什么需要 Map
+对象的key只能是字符串或者数字，Map的key可以是任意值。
 49. TCP 滑动窗口
 50. 判断链表是否有环
   - hash
