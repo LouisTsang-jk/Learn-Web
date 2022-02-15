@@ -1,3 +1,0 @@
-HTMLCollection
-Arguments
-NodeList(DOM)

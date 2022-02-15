@@ -166,6 +166,12 @@ window.__POWERED_BY_QIANKUN__可以判断是否在qiankun框架内
 32. 300kb 的资源在正常网络请求下返回的时间大概是？
 33. 打包的优化手段
 34. webpack 的 hash 模式有哪几种？
+  - hash
+  其中一个文件修改了，所以其他的文件的hash也会跟着修改
+  - chunk hash
+  chunk hash根据不同的入口文件(Entry)进行依赖解析并构建对应的chunk和hash
+  - content hash
+  文件内容级别，只有文件内容变了才会更新相应文件的hash
 35. 删除构造函数的原型对象会发生什么？
 36. 移动端除了 REM 以外还有其他解决响应式页面的方案吗？
 37. LocalStorage 实现一定的时间后过期
@@ -343,7 +349,9 @@ elem.addEventListener('build', function (e) { ... }, false);
 elem.dispatchEvent(event);
 ```
 70. 最近chrome限制的same-site是怎么回事
+chrome80会默认(SameSite: lax)在跨域请求的情况下不允许携带cookie给后端，导致所有跨域场景下使用cookie进行鉴权的服务都会受到影响。    
+网站可以选择显式关闭SameSite属性，并将其设为None，不过前提是设置Secure属性(Cookie只能通过HTTPS协议发送)
 71. setState是同步还是异步
 `isBatchingUpdates`决定是否异步，默认为false表示不会让setState异步执行。
 > 简单来说就是经过React处理的事件是不会同步更新；通过addEventListener || setTimeout / setInterval
-72. 
+72. Symbol的作用是什么，为什么需要？
