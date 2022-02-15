@@ -122,12 +122,24 @@
 16. 为什么 React 和 Vue 都需要虚拟 DOM
 17. React 数据流/组件间通信
 18. Vue 数据流/组件间通信
+  1. props/$emit
+  2. ref
+  3. $parent
+  4. $attrs
+  5. $listeners
+  6. provide/inject
+  7. $bus
+  8. vuex
 19. Vue 和 React 的区别
 20. Hook 内部实现原理
 21. qiankun 的微应用如何判断当前应用在基座上还是独立运行
+window.__POWERED_BY_QIANKUN__可以判断是否在qiankun框架内
 22. 如何实现类似 Keep-alive 的效果？(类似两个应用同时运行)
+配置activeRule使两个应用处于激活状态
 23. umi 框架设计中，有哪些部分是值得借鉴的？
-  - 
+  - 脏代码文件放.umi里面处理，不需要用户自己关注
+  - 约定式路由，新建文件夹就创建了路由
+  - 插件系统，umi暴露生命周期来实现插件，本身也是自带多个插件
 24. 新项目需求，会从哪几个方面考虑使用什么技术栈?
   - 从团队技术栈上分析
   - 从尺寸大小，React相对更大
@@ -209,6 +221,35 @@ Type通过从中选择所有属性然后删除Keys
 -
 
 46. webpack 的生命周期
+  - environment
+  - afterEnvironment
+  - entryOption
+  - afterPlugins
+  - afterResolvers
+  - initialize
+  - beforeRun
+  - run
+  - watchRun
+  - normalModuleFactory
+  - contextModuleFactory
+  - beforeCompile
+  - **compile**
+  beforeCompile 之后立即调用，但在一个新的 compilation 创建之前。这个钩子不会被复制到子编译器。
+  - thisCompilation
+  - **compilation**
+  compilation 创建之后执行。
+  - thisCompilation
+  - make
+  - afterCompile
+  - shouldEmit
+  - emit
+  - afterEmit
+  - assetEmitted
+  - done
+  - invalid
+  - watchClose
+  - infrastructureLog
+  - log
 47. Proxy 和 Reflect
 48. 为什么需要 Map
 49. TCP 滑动窗口

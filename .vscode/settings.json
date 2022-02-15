@@ -4,7 +4,8 @@
     "commitlint",
     "keyof",
     "pnpm",
-    "qiankun"
+    "qiankun",
+    "vuex"
   ],
   "editor.accessibilitySupport": "off"
 }
