@@ -127,12 +127,19 @@
 21. qiankun 的微应用如何判断当前应用在基座上还是独立运行
 22. 如何实现类似 Keep-alive 的效果？(类似两个应用同时运行)
 23. umi 框架设计中，有哪些部分是值得借鉴的？
+  - 
 24. 新项目需求，会从哪几个方面考虑使用什么技术栈?
+  - 从团队技术栈上分析
+  - 从尺寸大小，React相对更大
+  - 
 25. React 和 Vue 的 diff 算法上的区别
 26. 如果一个游戏应用在部分机型上出现卡顿，从哪几个点上去分析？
 27. 事件循环，微任务后面再碰到一个微任务的话，是会将这个微任务加在原来队列上，还是下一次循环？
 28. 重绘(页面刷新)是宏任务还是微任务？如果不是的话在哪个任务的前面还是后面？（请补充代码解释）
 29. GPU 加速如何开启？是否需要一直开启，理由？
+- 使用transform: translateZ(0)
+- will-change
+不需要一直开启，因为移动端上耗电高，有些场景使用CPU处理更快
 30. 原型链的应用
 31. 组合寄生继承、寄生继承等继承方式的优缺点
 32. 300kb 的资源在正常网络请求下返回的时间大概是？
@@ -141,12 +148,53 @@
 35. 删除构造函数的原型对象会发生什么？
 36. 移动端除了 REM 以外还有其他解决响应式页面的方案吗？
 37. LocalStorage 实现一定的时间后过期
+跟Expire一样设置过期时间即可
 38. 有开发过什么比较难或者印象比较深刻的项目吗？
 39. 有了解过 pnpm 吗？
 40. 正则的贪婪如何写？
 41. TS 的高级类型有哪些？
-- 
-
+- `Partial<Type>`
+将类型定义的所有属性都修改为可选
+```
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+}
+```
+- `Readonly<Type>`
+将类型定义的所有属性都修改为可读
+```
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P]; 
+}
+```
+- `Pick<Type, Keys>`
+从中选一组属性Keys
+```
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P];
+}
+```
+- `Record<Keys, Type>`
+```
+// 将K中的每个属性都转换为T类型
+// keyof any => string | number | symbol
+type Record<K extends keyof any, T> = {
+  [P in K]: T;
+}
+```
+- `Omit<Type,Keys>`
+Type通过从中选择所有属性然后删除Keys
+- `Required<Type>`
+- `Exclude<UnionType, ExcludedMembers>`
+- `Extract<Type, Union>`
+- `ReturnType<Type>`
+- `NonNullable<Type>`
+- `Parameters<Type>`
+- `ConstructorParameters<Type>`
+- `InstanceType<Type>`
+- `ThisParameterType<Type>`
+- `OmitThisParameter<Type>`
+- `ThisType<Type>`
 42. 使用 Hook 有什么坑或者注意的地方？
    - 要在React函数内
    - 不能在循环体或者条件语句里
@@ -172,6 +220,7 @@
 53. vue3 中为什么使用`Proxy`替换原来的`Object.defineProperties`
 54. 请描述一下 vue3 的静态标记和事件监听器缓存(cacheHandlers)
 55. 如何将闭包中泄漏的内存进行释放？
+对内存泄漏的变量进行null赋值
 56. Symbol.for
 > 场景：重新使用同一个`Symbol`
 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。
