@@ -12,7 +12,7 @@
       - text/plain
     除简单请求外的请求都是复杂请求，其中 Axios 都是复杂请求
     > 复杂请求在正式请求之前都会有预检请求，在浏览器中都能看到有 OPTIONS 请求，用于向服务器请求权限信息
-  ---
+---
 2. 缓存中 no-store 和 no-cache 区别
    `no-store`: 禁用缓存
    `no-cache`: 使用缓存之前重新请求
@@ -61,18 +61,26 @@
       > - Symbol
 ---
 
-4. 常见 Hook
-
-- useState
-- useEffect
-- useContext
-- useReducer
-- useCallback
-- useMemo
-- useRef
-- useImperativeHandle
-- useLayoutEffect
-- useDebugValue
+4. 常见 Hook及问题
+  - useState
+  > 实现一个简易的useState
+  >```
+  > let state;
+  > function useState(initialState){
+    state = state || initialState;
+  }
+  >
+  >```
+  - useEffect
+  useEffect第一个参数的函数返回可以返回一个对象进行副作用销毁
+  - useContext
+  - useReducer
+  - useCallback
+  - useMemo
+  - useRef
+  - useImperativeHandle
+  - useLayoutEffect
+  - useDebugValue
 ---
 
 5. let 和 var 的区别
@@ -139,6 +147,7 @@
     - 逻辑更加方便
   - Class
     - Class可以拿到中间状态
+    - 不容易发生内存泄漏
 ---
 14. cdn 原理
 ---
@@ -146,6 +155,9 @@
 ---
 16. 为什么 React 和 Vue 都需要虚拟 DOM
   - 减少操作DOM，任何页面的变化都是用虚拟DOM进行对比，
+  - 组件高度抽象化
+  - 实现SSR/同构渲染
+  - 框架跨平台
 ---
 17. React 数据流/组件间通信
  - 父 -> 子:props
@@ -197,6 +209,7 @@ window.__POWERED_BY_QIANKUN__可以判断是否在qiankun框架内
 ---
 30. 原型链的应用
 - 扩展数组的方法
+- Vue2
 31. 组合寄生继承、寄生继承等继承方式的优缺点
 ---
 32. 300kb 的资源在正常网络请求下返回的时间大概是？
@@ -210,13 +223,20 @@ window.__POWERED_BY_QIANKUN__可以判断是否在qiankun框架内
   chunk hash根据不同的入口文件(Entry)进行依赖解析并构建对应的chunk和hash
   - content hash
   文件内容级别，只有文件内容变了才会更新相应文件的hash
+---
 35. 删除构造函数的原型对象会发生什么？
+---
 36. 移动端除了 REM 以外还有其他解决响应式页面的方案吗？
+---
 37. LocalStorage 实现一定的时间后过期
 跟Expire一样设置过期时间即可
+---
 38. 有开发过什么比较难或者印象比较深刻的项目吗？
+---
 39. 有了解过 pnpm 吗？
+---
 40. 正则的贪婪如何写？
+---
 41. TS 的高级类型有哪些？
 - `Partial<Type>`
 将类型定义的所有属性都修改为可选
@@ -264,15 +284,17 @@ Type通过从中选择所有属性然后删除Keys
    - 要在React函数内
    - 不能在循环体或者条件语句里
    - 闭包导致渲染旧值，可以用ref处理
+---
 43. react17 的新特性有了解吗？
   - 事件合成的三处改动
-
+---
 44. 为什么数组的插入比链表复杂？
+---
 45. interface 和 type 的区别？
 
 - interface 可以 extends, type 不允许 extends，不过可以通过交叉类型实现。
 -
-
+---
 46. webpack 的生命周期
   - environment
   - afterEnvironment
@@ -314,6 +336,8 @@ Type通过从中选择所有属性然后删除Keys
 51. DPI/PPI/设备像素/独立像素
 52. postCSS 的 REM 处理流程
 53. vue3 中为什么使用`Proxy`替换原来的`Object.defineProperties`
+  Proxy可以对整个对象进行代理，可以监听对象某个属性值的变化，还能监听对象属性的新增和删除。defineProperties只能对已存在的属性添加对应的getter和setter，并不能监听对象的新增和删除。
+---
 54. 请描述一下 vue3 的静态标记和事件监听器缓存(cacheHandlers)
 55. 如何将闭包中泄漏的内存进行释放？
 对内存泄漏的变量进行null赋值
