@@ -145,6 +145,7 @@
     - 写法更加简洁
     - 业务代码更加聚合：有时候写业务会忘记清理计时器造成内存泄漏
     - 逻辑更加方便
+    - 没有统一的错误处理。而 Class Component 中有 componentDidCatch 和 getDerivedStateFromError
   - Class
     - Class可以拿到中间状态
     - 不容易发生内存泄漏
