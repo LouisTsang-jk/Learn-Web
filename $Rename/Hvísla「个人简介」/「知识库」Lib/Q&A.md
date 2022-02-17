@@ -376,7 +376,18 @@ Type通过从中选择所有属性然后删除Keys
 
 65. 箭头函数有argument吗
 箭头函数没有自己的this、arguments、super、new
-66. 错误拦截的方法
+66. 前端异常/错误拦截的方法
+  - Promise没有进行Catch
+    监听unhandledrejection
+  - 语法错误
+  监听window.onerror事件
+  - 资源加载错误
+  在资源标签上使用onerror监听
+  - 页面崩溃
+  使用Worker
+  - 框架自身带有错误处理
+  Vue的errorHandler
+
 67. 为什么js是单线程的，有什么优点和缺点？
 优点：
   - 多线程会有复杂的同步问题：线程A在某个节点上新增内容，线程B删除了该节点
