@@ -4,7 +4,9 @@
     "commitlint",
     "keyof",
     "pnpm",
+    "pxtorem",
     "qiankun",
+    "unhandledrejection",
     "vuex"
   ],
   "editor.accessibilitySupport": "off"
