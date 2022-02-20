@@ -1,6 +1,14 @@
 # React 事件合成
-
 React 自己实现了一套高效的事件注册，存储，分发和重用逻辑。在 DOM 事件体系基础上改进，减少了内存消耗，简化事件逻辑，并最大化解决 IE 等浏览器的不兼容问题。与 DOM 事件体系相比，有以下特点：
+
+## 设计思想
+
+## 流程
+```mermaid
+graph TD
+    A[事件触发,冒泡至document] --> B[执行dispatchEvent] --> C["创建事件对应的合成事件对象(SyntheticEvent)"] --> D[收集事件在捕获阶段所波及的回调函数和对应的节点实例] --> E[收集事件在冒泡阶段所波及的回调函数和对应的节点实例] --> F[将前两步收集来的回调按顺序执行,执行时SyntheticEvent会作为入参被传入每个回调]
+```
+
 
 1. React 组件上声明的事件最终绑定到`document`这个 DOM 节点上(react17 注册到`root`)，而不是 React 组件对应的 DOM 节，简化了 DOM 原生事件，减少了内存开销。
 2. React 以队列的方式，从接触事件的组件向父组件回溯，调用在 JSX 中声明的 callback。也就是 React 自身实现了一套事件冒泡机制。我们没办法使用`event.stopPropagation()`来停止事件传播，而应该使用`event.preventDefault()`。
