@@ -35,4 +35,9 @@ graph TD
     D --> E["5. 定义ensureCanMutateNextListeners方法<br />该方法用于确保currentListeners与nextListeners不指向同一个引用"]
     E --> F["6. 定义getState方法，该方法用于获取当前状态"]
     F --> G["7. 定义subscribe方法，该方法用于注册listeners(订阅监听函数)"]
+    G --> H["8. 定义dispatch方法，该方法用于派发action、调用reducer并触发订阅"]
+    H --> I["9. 定义replaceReducer方法，该方法用于替换reducer"]
+    I --> J["10. 执行一次dispatch，完成状态的初始化"]
+    J --> K["11. 定义observable方法"]
+    K --> H["12. 将步骤6~11定义的方法放进store对象中返回"]
 ```
