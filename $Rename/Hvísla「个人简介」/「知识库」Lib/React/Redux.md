@@ -76,3 +76,7 @@ const store = createStore(
   applyMiddleware(middleware1, middleware2,...);
 )
 ```
+#### 执行时机
+> action被分发后；reducer出发之前；
+#### 执行前提
+> applyMiddleware会对dispatch函数进行改写，使得dispatch在出发reducer之前会首先执行redux中间件的链式调用
