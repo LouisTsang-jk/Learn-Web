@@ -62,3 +62,17 @@ graph TD
 Redux会在reducer执行完毕后将listeners数组中的监听函数逐个执行
 
 > 为什么需要currentListeners和nextListeners两个listeners数组
+> currentListeners: 确保监听函数执行过程的稳定性
+> nextListeners: 注册监听/触发订阅/取消监听 都是该数组
+
+
+### 中间件
+```
+import { createStore, applyMiddleware } from 'redux';
+...
+const store = createStore(
+  reducer,
+  initial_state,
+  applyMiddleware(middleware1, middleware2,...);
+)
+```
