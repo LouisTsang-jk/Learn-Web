@@ -27,6 +27,7 @@ graph TD
 
 
 ## 工作
+### createStore
 ```mermaid
 graph TD
     A["1. 调用createStore"] --> B["2. 处理没有传入初始状态(前两个入参都为function)的情况"]
@@ -39,5 +40,25 @@ graph TD
     H --> I["9. 定义replaceReducer方法，该方法用于替换reducer"]
     I --> J["10. 执行一次dispatch，完成状态的初始化"]
     J --> K["11. 定义observable方法"]
-    K --> H["12. 将步骤6~11定义的方法放进store对象中返回"]
+    K --> L["12. 将步骤6~11定义的方法放进store对象中返回"]
 ```
+---
+### dispatch
+```mermaid
+graph TD
+  A["1. 调用dispatch，入参为action对象"] --> B["2. 前置校验"]
+  B --> C["3. “上锁”：将isDispatching置为true"]
+  C --> D["4. 调用reducer，计算新的state"]
+  D --> E["5. “解锁”：将disDispatching置为false"]
+  E --> F["6. 触发订阅"]
+  F --> G["7. 返回action"]
+```
+> 这里设置isDispatching是避免开发者在reducer中手动调用dispatch，避免死循环
+
+### subscribe
+1. 在store对象创建成功后
+通过调用`store.subscribe`来注册监听函数
+2. 当`dispatch action`发生时
+Redux会在reducer执行完毕后将listeners数组中的监听函数逐个执行
+
+> 为什么需要currentListeners和nextListeners两个listeners数组
