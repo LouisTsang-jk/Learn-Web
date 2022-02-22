@@ -445,3 +445,7 @@ chrome80会默认(SameSite: lax)在跨域请求的情况下不允许携带cookie
 > 简单来说就是经过React处理的事件是不会同步更新；通过addEventListener || setTimeout / setInterval
 72. Symbol的作用是什么，为什么需要？
 73. new的执行过程
+74. Object.is和===区别
+基本一致，但是Object.is下:
+1. +0不等于-0
+2. NaN相等
