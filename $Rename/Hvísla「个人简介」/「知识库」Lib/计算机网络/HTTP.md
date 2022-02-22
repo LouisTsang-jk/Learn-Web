@@ -22,23 +22,47 @@
   2. body动态生成，如果等生成完再写header会占用额外的开销  
 
 所以有三种情况去获取资源大小：
-  1. 服务器知道资源大小，直接通过Content-Length
-  2. 回复报文的Header添加`Transfer-Encoding: chunked`   
+  1. `服务器知道资源大小，直接通过Content-Length`
+  2. `回复报文的Header添加Transfer-Encoding: chunked`   
     表明分块传输，每一块都使用固定的格式，前面是块的大小，后面是数据；最后一块的大小为0，此时客户端解析的时候需要去掉一些无用字段
-  3. 没有content-length、transfer-encoding
-  这种情况只能使用短连接，以连接结束来标示数据传输结束，当传输结束的时候就知道大小了。
+  3. `没有content-length、transfer-encoding  `
+    这种情况只能使用短连接，以连接结束来标示数据传输结束，当传输结束的时候就知道大小了。
+
+
+## Content-Type
+- form表单
+  1. application/x-www-form-urlencoded
+  2. multipart/form-data
+  3. text/plain
+- 其他
+  - application/json
+
+
+## CORS-preflight
+
+
+## Keep-alive
+- TCP
+TCP层实现，称之TCP保活机制，意图是心跳、检测连接错误。
+> 原理就是通过计时器发送TCP探测包
+- HTTP
+应用层实现，称之为HTTP长连接，意图是连接复用
+
+
+## 长连接
+
+## 队头阻塞(Head-Of-Line Blocking)(HOL)
+  - HTTP队头阻塞
+    - 0.9版本，使用串行连接，需要等待上一个请求完成，才能执行下一个请求
+    - 1.0版本，使用并行连接，浏览器限制并行连接通常为4个，只能缓解队头阻塞
+    - 
+  - TCP队头阻塞
 
 ## 常见问题
 
 - `一个 TCP 连接可以同时发送几个 HTTP 请求`
 - `浏览器 HTTP 请求的并发性是如何体现的？并发请求的数量是否有限制？`
 
-- `队头阻塞(Head-Of-Line Blocking)(HOL)`
-  - HTTP队头阻塞
-    - 0.9版本，使用串行连接，需要等待上一个请求完成，才能执行下一个请求
-    - 1.0版本，使用并行连接，浏览器限制并行连接通常为4个，只能缓解队头阻塞
-    - 
-  - TCP队头阻塞
 - `keep-alive和pipeling的区别？`
   - `keep-alive`   
     请求结束之后不断开连接，省去下次的三次握手四次挥手
