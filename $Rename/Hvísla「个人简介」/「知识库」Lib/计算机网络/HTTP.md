@@ -86,7 +86,8 @@
 
 ## 简单请求/非简单请求(复杂请求)
 - `简单请求`    
-普通HTML Form可以发出的请求(method方法、enctype编码)，且Form表单发出的请求不会触发同源策略，因为submit之后是没有返回的。
+普通HTML Form可以发出的请求(method方法、enctype编码)，且Form表单发出的请求不会触发同源策略，因为submit之后是没有返回的。    
+简单请求不发`preflight`不是不能兼容，而是兼容为前提下发`preflight`对绝大多数服务器应用来说没有意义，反而把问题搞复杂。
 - `非简单请求`    
 除了简单请求就是非简单请求了，**需要注意跨域情况下会走`CORS-preflight机制`**
 
@@ -161,14 +162,32 @@
     设置Stream改变其优先级(Priority)和依赖(Dependency)，优先级高的会有限返回，stream还能依赖其他sub streams。两个属性都是可以动态调整的。
   - `服务端推送(Server Push)`    
     即服务端向客户端发送比客户端请求更多的数据，允许服务器直接提供浏览器渲染页面所需资源，而不需要浏览器收到、解析页面之后再发起一轮请求
-### 3.0
-QUIC(Quick UDP Internet Connection)协议
+### 3.0(2018)
+基于UDP的QUIC(Quick UDP Internet Connection)协议，主要解决HTTP2.0中存在的TCP拥塞控制影响导致少量的丢包就会导致整个TCP连接的所有流被阻塞。     
+- 相比HTTP2优势
+  - `减少TCP三次握手及TLS握手时间`      
+  - `改进的拥塞控制`      
+    QUIC协议当前默认使用TCP协议的Cubic拥塞控制算法，同时也支持CubicBytes、Reno、RenoBytes、BBR、PCC
+  - `避免队头阻塞的多路复用`      
+  - `连接迁移`      
+    网络环境变更，如WIFI切蜂窝
+  - `前向冗余纠错`      
+    重要的包比如握手信息丢失的时候能够根据冗余信息还原握手信息
+  - `可拔插`      
+    1. 应用程序层就能实现不同的拥塞控制算法，不需要操作系统和内核支持。因为传统的TCP拥塞控制必须端到端的网络协议栈支持才行，在网络爆炸式增长的今天无法满足。
+    2. 即使是单个应用程序的不同连接也能支持配置不同的拥塞控制，可以为各个用户提供不同但是又更加精准的拥塞控制。
+    3. 应用程序不需要停机进行升级就能实现拥塞控制的变更，只需要服务端修改配置后reload就能进行切换
+  -` 单调递增的Packet Number`    
+    QUIC使用Packet Number代替TCP的sequence number，并且每个Packet Number严格递增，重传的Packet N的number已经不是N，而是比N大的值。   
+    TCP在上述情况下会重传一个sequence number一致的数据，当收到两个sequence number一致的数据时无法判断时原来的数据还是重传的数据。
+
 ## HTTPS
 
-## 概念
-
 ### TLS/SSL
+
+## RTT
+- tcp: 1.5RTT
+- tsl/ssl: 1.5RTT
 # 参考
 [合并 HTTP 请求是否真的有意义？](https://www.zhihu.com/question/34401250/answer/58746920)
-[彻底理解CORS跨域原理 
-](https://www.cnblogs.com/qiujianmei/p/11649905.html)
+[彻底理解CORS跨域原理](https://www.cnblogs.com/qiujianmei/p/11649905.html)
