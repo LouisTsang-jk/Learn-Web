@@ -32,20 +32,32 @@
 ## Content-Type
 - form表单
   1. application/x-www-form-urlencoded
+      form表单数据被编码为key/value格式发送到服务器(表单默认提交格式)
+      ```
+        Name=John+Smith&Age=23
+      ```
   2. multipart/form-data
+      需要在表单中进行文件上传，可能有批量上传，为了区分数据，用Boundary参数进行分割
   3. text/plain
+      纯文本格式
 - 其他
   - application/json
+      返回JSON格式
+    ```
+      {"Name": "John Smith", "Age": 23}
+    ```
+  - text/x-json
+    实验性，非官方MIME类型
 
 
 ## CORS-preflight
-
+面对跨域的非简单请求(复杂请求)会发起预检，浏览器会先询问服务器(OPTION请求)，当前域名是否在服务器许可名单前，以及可以使用哪些HTTP头信息字段，只有通过才会正式发起AJAX请求。
 
 ## Keep-alive
-  - TCP(keepalive)
-  TCP层实现，称之TCP保活机制，意图是心跳、检测连接错误。
+  - `TCP(keepalive)`    
+    TCP层实现，称之TCP保活机制，意图是心跳、检测连接错误。
   > 原理就是通过计时器发送TCP探测包
-  - HTTP(Keep-Alive)
+  - `HTTP(Keep-Alive)`    
   应用层实现，称之为HTTP长连接，意图是连接复用。
   > 原理就是HTTP服务器不会在每次响应后关闭TCP连接，而是等待一段时间，如果其他HTTP请求也可以通过，一段时间后，它无论如何都会关闭它。   
 
@@ -70,7 +82,7 @@
     - 1.0版本，使用并行连接，浏览器限制并行连接通常为4个，只能缓解队头阻塞
     - 
   - TCP队头阻塞
-
+    TCP收到数据之后不会直接发送，而是将数据切割成MSS(Maximum Segment Size最大报文长度)大小，由于IP层不保证数据的可靠性和有序性，所以接收端可能会先收到窗口末端的数据，这时候TCP是不会向上层应用交付数据的，必须等待前面的数据都接收，这就是TCP的队头阻塞。
 
 ## 简单请求/非简单请求(复杂请求)
 - `简单请求`    
@@ -114,7 +126,6 @@
 ### 1.1(1997)
 #### 新增
   - 管道机制(pipeling)
-    客户端可以并行发送多个请求，但是服务器响应必须按次序返回，所以导致pipeling没有什么浏览器使用
   - 默认开启`keep-alive`
   - 头信息`Content-Length`
   - 更多的请求方式，如PUT、PATCH、OPTIONS、DELETE等
@@ -122,11 +133,24 @@
   - 支持断点续传
   - 24个错误状态响应码
 #### 局限
+  - header信息太大
+  - 客户端可以并行发送多个请求，但是服务器响应必须按次序返回，所以导致pipeling没有什么浏览器使用
 
 ### 2.0(2015)
-
+基于SPDY(发音同`speedy`)协议，主要解决HTTP1.1效率不高的问题。
+#### 新增
+  - `二进制分帧`    
+    将一个TCP连接分为若干个流(Stream)，每个流中可以传输若干消息(Message)，每个消息由若干最小的二进制帧(Frame)组成。每个用户的操作行为会分配一个流编号(Stream ID)，表明用户与服务端之间创建了一个TCP通道；   
+    协议将每个请求分割为二进制的控制帧和数据帧。
+  - `多路复用`    
+    比起HTTP1.1，HTTP2的多路复用不需要先入先出
+  - `请求头压缩`   
+  - `请求优先级`    
+    HPACK算法基于霍夫曼编码
+  - `服务端推送(Server Push)`    
+    即服务端向客户端发送比客户端请求更多的数据，允许服务器直接提供浏览器渲染页面所需资源，而不需要浏览器收到、解析页面之后再发起一轮请求
 ### 3.0
-
+QUIC(Quick UDP Internet Connection)协议
 ## HTTPS
 
 ## 概念
@@ -134,3 +158,5 @@
 ### TLS/SSL
 # 参考
 [合并 HTTP 请求是否真的有意义？](https://www.zhihu.com/question/34401250/answer/58746920)
+[彻底理解CORS跨域原理 
+](https://www.cnblogs.com/qiujianmei/p/11649905.html)
