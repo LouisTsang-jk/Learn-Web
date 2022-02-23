@@ -143,13 +143,13 @@
     将一个TCP连接分为若干个流(Stream)，每个流中可以传输若干消息(Message)，每个消息由若干最小的二进制帧(Frame)组成。每个用户的操作行为会分配一个流编号(Stream ID)，表明用户与服务端之间创建了一个TCP通道；   
     协议将每个请求分割为二进制的控制帧和数据帧。
 
-    | HTTP1.x    | HTTP2.0                                                  |
-    | ------- | ----------------------------------------------------- |
-    | StartLine     | Length                      |
-    | Header     | Type                      |
-    | Body  | Flags                      |
-    |     | Stream ID |
-    |    | Payload  |
+    | HTTP1.x   | HTTP2.0   |
+    | --------- | --------- |
+    | StartLine | Length    |
+    | Header    | Type      |
+    | Body      | Flags     |
+    |           | Stream ID |
+    |           | Payload   |
 
 
 
