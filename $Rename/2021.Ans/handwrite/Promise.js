@@ -6,7 +6,7 @@ function _Promise (fn) {
   const _this = this;
   this.status = PENDING;
   this.value = null;
-  this.reson = null;
+  this.reason = null;
   this.resolvedCallbacks = [];
   this.rejectedCallbacks = [];
   function resolve (value) {
