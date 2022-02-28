@@ -15,7 +15,7 @@ exports.circumference = (r) => 2 * PI * r;
 ## AMD(Asynchronous Module Definition)
 异步加载模块，允许指定回调函数。也采取`require()`语句。
 `不能按需加载`
-> `requre([module], callback)`
+> `require([module], callback)`
 > `define(id, [depends], callback)`
 ```
 // main.js
