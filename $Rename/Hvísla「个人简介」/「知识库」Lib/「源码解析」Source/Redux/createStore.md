@@ -37,7 +37,7 @@ function createStore (reducer, preloadedState, enhancer) {
 ```
 
 2. enhancer 是函数的话，则将 createStore 作为参数传入
-
+[applyMiddleware分析](../Redux/applyMiddleware.md)
 ```
 
 if (typeof enhancer === 'function') {
