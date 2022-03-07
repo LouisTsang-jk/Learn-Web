@@ -42,6 +42,7 @@ JavaScript运行时包含了一个待处理的消息队列。每一个消息都�
 **同一次事件循环中，微任务永远在宏任务之前执行**
 
 ### 宏任务
++ <script>ß
 + setTimeout 
 + setInterval 
 + setImmediate 
@@ -52,6 +53,7 @@ JavaScript运行时包含了一个待处理的消息队列。每一个消息都�
 ### 微任务
 + process.nextTick
 + Promise.then()
++ MutaionObserver
 
 > node和浏览器行为不完全一致，
 > - 浏览器环境每次执行一个宏任务，再去检查微任务
