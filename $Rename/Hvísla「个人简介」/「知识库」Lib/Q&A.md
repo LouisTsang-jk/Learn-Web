@@ -306,35 +306,9 @@ Type通过从中选择所有属性然后删除Keys
 -
 ---
 46. webpack 的生命周期
-  - environment
-  - afterEnvironment
-  - entryOption
-  - afterPlugins
-  - afterResolvers
-  - initialize
-  - beforeRun
-  - run
-  - watchRun
-  - normalModuleFactory
-  - contextModuleFactory
-  - beforeCompile
+> 常用就这两个
   - **compile**
-  beforeCompile 之后立即调用，但在一个新的 compilation 创建之前。这个钩子不会被复制到子编译器。
-  - thisCompilation
   - **compilation**
-  compilation 创建之后执行。
-  - thisCompilation
-  - make
-  - afterCompile
-  - shouldEmit
-  - emit
-  - afterEmit
-  - assetEmitted
-  - done
-  - invalid
-  - watchClose
-  - infrastructureLog
-  - log
 47. Proxy 和 Reflect
 
 48. 为什么需要 Map
@@ -453,3 +427,12 @@ chrome80会默认(SameSite: lax)在跨域请求的情况下不允许携带cookie
 75. 流程编辑器，节点连线的时候，靠近节点的一段需要做一个吸附的效果，如何实现？如果节点数量很多，如何优化？
 
 76. URL/URI/URN
+
+77. webpack的module、chunk、bundle是什么？
+其实是同一份代码在不同场景下的名字
+- module
+开发者手写的代码
+- chunk
+webpack处理的代码
+- bundle
+浏览器执行的代码
