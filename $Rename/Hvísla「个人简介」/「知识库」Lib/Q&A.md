@@ -333,6 +333,14 @@ Type通过从中选择所有属性然后删除Keys
 > 场景：重新使用同一个`Symbol`
 方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。
 57. 如何用代码去体现 Map 和 WeakMap 区别？
+```
+let map = new Map();
+let key = new Array(5 * 1024 * 1024);
+map.set(key, 1);
+map.delete(key);
+key = null; // 如果使用WeakMap不需要置空
+```
+可以用`node --expose-gc`进行手动gc(`global.gc()`)，`process.memoryUsage()`通过观察内存大小来判断是否清理了内存
 58. 对React ref的理解和原理
 59. useReduces的dispatch的作用是什么，为什么需要dispatch
 60. useEffect依赖链比较长如何处理
@@ -436,3 +444,7 @@ chrome80会默认(SameSite: lax)在跨域请求的情况下不允许携带cookie
 webpack处理的代码
 - bundle
 浏览器执行的代码
+
+---
+78. for...in遍历顺序
+整数属性排序先遍历，其他属性按照创建顺序出现
