@@ -3,9 +3,8 @@ function throttle(fn, time) {
   return function (...args) {
       if (!flag) return;
       flag = false;
-      const context = this;
       setTimeout(() => {
-          fn.apply(context, args);
+          fn.apply(this, args);
           flag = true;
       }, time)
   }
@@ -15,7 +14,8 @@ function throttle(fn, time) {
 const div = document.createElement('div');
 div.style = 'height: 300vh;width: 100px;border: 1px solid #000';
 document.body.appendChild(div);
-document.body.onscroll = throttle((e) => {
-  console.log('scroll', e);
+document.body.onclick = throttle(function(e) {
+  console.log('e', e); // e
+  console.log('this', this) // body
 }, 1000)
 
