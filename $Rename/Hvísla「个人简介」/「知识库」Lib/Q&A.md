@@ -433,7 +433,8 @@ chrome80会默认(SameSite: lax)在跨域请求的情况下不允许携带cookie
   2. NaN相等
 
 75. 流程编辑器，节点连线的时候，靠近节点的一段需要做一个吸附的效果，如何实现？如果节点数量很多，如何优化？
-
+- ROI算法
+- 位置转换成二叉树
 76. URL/URI/URN
 
 77. webpack的module、chunk、bundle是什么？
@@ -454,3 +455,10 @@ webpack处理的代码
 - main: browser环境和node环境均可使用
 - module: ESM规范的入口文件，browser环境和node环境均可使用
 - browser: browser环境下的入口文件
+
+80. 什么是canvas污染
+81. canvas如何进行性能分析
+82. canvas常见的渲染优化
+83. 100 * 100的Canvas占内存多少？
+一个像素包括rgba，里面都是0~255，即2^8 = 1Byte
+所以100 * 100 * 4byte = 40000byte
