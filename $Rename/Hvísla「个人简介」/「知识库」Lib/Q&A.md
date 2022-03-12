@@ -448,3 +448,9 @@ webpack处理的代码
 ---
 78. for...in遍历顺序
 整数属性排序先遍历，其他属性按照创建顺序出现
+
+79. package.json里面browser/module/main这几个字段的作用
+都是定义npm包的入口文件
+- main: browser环境和node环境均可使用
+- module: ESM规范的入口文件，browser环境和node环境均可使用
+- browser: browser环境下的入口文件
