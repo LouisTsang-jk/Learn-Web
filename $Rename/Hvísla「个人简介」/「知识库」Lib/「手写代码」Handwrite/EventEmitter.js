@@ -1,3 +1,4 @@
+// 发布订阅
 class EventEmitter {
   constructor() {
     this.listeners = Object.create(null);
