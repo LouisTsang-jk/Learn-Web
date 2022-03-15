@@ -183,6 +183,9 @@
   8. vuex
 ---
 19. Vue 和 React 的区别
+  - Vue双向数据流，React单向数据流
+  - Vue渲染template，React渲染JSX
+  - Vue更新自动绑定依赖，React开发者setState
 ---
 20. Hook 内部实现原理
 ---
@@ -462,3 +465,11 @@ webpack处理的代码
 83. 100 * 100的Canvas占内存多少？
 一个像素包括rgba，里面都是0~255，即2^8 = 1Byte
 所以100 * 100 * 4byte = 40000byte
+
+84. CDN命中率低
+原因可能如下：    
+- HTTP Header设置不当
+- 动态资源过多，CDN主要加速对象为静态资源
+- 缓存刷新操作频繁
+- head请求不缓存
+- 资源访问量较低

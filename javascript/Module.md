@@ -46,7 +46,7 @@ define(function (rerquire, exports) {
 可以将文件后缀改为`.mjs`，或者修改`package.json``{ type: "module" }`。
 使用`import`命令加载CommonJS模块。依赖分析在哪个阶段完成，最底层的模块第一个执行。
 - ES6模块加载CommonJS模块
-只能整体加载，不能只加载某项。因为需要噢静态代码分析，CommonJS模块输出接口是`module.exports`，只能整体加载。
+只能整体加载，不能只加载某项。因为需要静态代码分析，CommonJS模块输出接口是`module.exports`，只能整体加载。
 # 区别
 1. CommonJS模块输出的是值的拷贝。
 2. JS引擎对脚本静态分析的时候，遇到模块加载命令`import`，就会生成一个只读引用。当脚本真正执行时，再根据这个只读引用，到被加载的那个模块去取值。
