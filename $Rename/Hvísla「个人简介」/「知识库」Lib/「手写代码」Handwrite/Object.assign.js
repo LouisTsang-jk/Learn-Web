@@ -1,9 +1,9 @@
 Object.assign = function (target, ...sources) {
   sources.forEach((source) => {
     for (key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
+      Object.keys(source).forEach(key => {
         target[key] = source[key];
-      }
+      })
     }
   });
   return target;
