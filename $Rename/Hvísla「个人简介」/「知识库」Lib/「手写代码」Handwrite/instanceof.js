@@ -10,3 +10,8 @@ Object.prototype.instanceof = function (constructor) {
     obj = obj.__proto__;
   }
 };
+
+function A () {}
+const a = new A();
+console.log(a.instanceof(Array)) // false
+console.log(a.instanceof(A)) // true
