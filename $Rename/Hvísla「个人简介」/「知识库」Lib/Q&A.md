@@ -334,7 +334,7 @@ Type通过从中选择所有属性然后删除Keys
 对内存泄漏的变量进行null赋值
 56. Symbol.for
 > 场景：重新使用同一个`Symbol`
-方法会根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则，新建一个与该键关联的 symbol，并放入全局 symbol 注册表中。
+和 Symbol() 不同的是，用 Symbol.for() 方法创建的的 symbol 会被放入一个全局 symbol 注册表中。Symbol.for() 并不是每次都会创建一个新的 symbol，它会首先检查给定的 key 是否已经在注册表中了。假如是，则会直接返回上次存储的那个。否则，它会再新建一个。
 57. 如何用代码去体现 Map 和 WeakMap 区别？
 ```
 let map = new Map();
