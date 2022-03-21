@@ -26,5 +26,5 @@ function New (fn, ...args) {
   // 2. 将this指向空对象,并将传入构造函数的参数在空对象上下文中执行一遍
   const ret = fn.apply(obj, args);
   // 3. 如果构造函数返回一个对象，则直接返回这个对象，反之则返回新创建的对象
-  return fn instanceof Object ? ret : obj;
+  return ret instanceof Object ? ret : obj;
 }
