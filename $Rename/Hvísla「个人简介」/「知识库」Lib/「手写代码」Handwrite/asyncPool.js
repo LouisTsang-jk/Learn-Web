@@ -4,7 +4,6 @@ async function asyncPool(poolLimit, array, iteratorFn) {
   for (const item of array) {
     // 调用iteratorFn函数创建异步任务
     const p = Promise.resolve().then(() => iteratorFn(item));
-    // const p = Promise.resolve().then(() => iteratorFn(item, array));
     ret.push(p); // 保存新的异步任务
 
     // 当poolLimit值小于或等于总任务个数时，进行并发控制
