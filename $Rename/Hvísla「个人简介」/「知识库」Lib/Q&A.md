@@ -514,3 +514,33 @@ webpack处理的代码
 如果项目中使用 webpack，你可以使用 prerender-spa-plugin 轻松地添加预渲染，后面将会具体实现。
 
 > 原理是在 Webpack 构建阶段的最后，在本地启动一个 Puppeteer 的服务，访问配置了预渲染的路由，然后将 Puppeteer 中渲染的页面输出到 HTML 文件中，并建立路由对应的目录。
+
+89. SSR的流式渲染
+> 一般来说，流式渲染就是把 HTML 分块通过网络传输，然后客户端收到分块后逐步渲染，提升页面打开时的用户体验。通常是利用HTTP/1.1中的分块传输编码（Chunked transfer encoding）机制。
+90. 如何理解React Suspense
+91. CSS固定高宽比
+- padding-bottom/height: 0/position: absolute;
+> 垂直方向上的内外边距使用百分比做单位时，是基于包含块的宽度来计算的。
+- aspect-ratio
+92. 回流和重绘
+因为浏览器采用流式布局(Flow Based Layout)，对于render tree的计算只需要一次，但是table及其内部元素可能需要更多次次数的运算。
+- 回流
+> 当Render Tree中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。
+- 重绘
+  - 页面首次渲染
+  - 浏览器窗口大小发生改变
+  - 元素尺寸或位置发生改变
+  - 元素内容变化（文字数量或图片大小等等）
+  - 元素字体大小变化
+  - 添加或者删除可见的DOM元素
+  - 激活CSS伪类（例如：:hover）
+  - 查询某些属性或调用某些方法：
+    - clientWidth、clientHeight、clientTop、clientLeft
+    - offsetWidth、offsetHeight、offsetTop、offsetLeft
+    - scrollWidth、scrollHeight、scrollTop、scrollLeft
+    - scrollIntoView()、scrollIntoViewIfNeeded()
+    - getComputedStyle()
+    - getBoundingClientRect()
+    - scrollTo()
+- 重绘
+> 当页面中元素样式的改变并不影响它在文档流中的位置时（例如：color、background-color、visibility等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。
