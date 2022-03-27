@@ -545,3 +545,11 @@ webpack处理的代码
 - 重绘
 > 当页面中元素样式的改变并不影响它在文档流中的位置时（例如：color、background-color、visibility等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。
 93. webpack的tapable架构
+
+94. babel-plugin-import原理
+> babel-plugin-import实现组件库的按需加载
+  1. 收集依赖
+  2. 判断是否被使用，生成新的import语句
+  3. 生成引入代码，样式的import语句
+
+95. webpack5的MF是什么？可以做什么？
