@@ -11,6 +11,7 @@
     "pxtorem",
     "qiankun",
     "SPDY",
+    "tapable",
     "unhandledrejection",
     "vuex"
   ],
