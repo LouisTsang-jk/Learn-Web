@@ -7,12 +7,7 @@ const params = {
   name: 'tom'
 }
 function getUrlParam(url) {
-  const res = {};
-  let paramsStr = url.split('?')?.[1];
-  if (paramsStr) {
-    const paramStr = paramsStr.split('&');
-    paramStr
-  }
+
 }
 const res = getUrlParam(url);
 console.log(res);
