@@ -14,3 +14,13 @@ console.log(arr.flat());
 console.log(arr.flat(2));
 console.log(arr.flat(3));
 console.log(arr.flat(4));
+// function flat (arr, depth = 1) {
+//   if (depth === 0) return arr;
+//   return arr.reduce((acc, cur) => {
+//       if (Array.isArray(cur) && depth) {
+//           return acc = [...acc, ...flat(cur, depth - 1)]
+//       } else {
+//           return acc = [...acc, cur];
+//       }
+//   }, [])
+// }
