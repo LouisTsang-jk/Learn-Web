@@ -585,3 +585,5 @@ JavaScript遵循国际IEEE 754标准，将数字存储为双精度浮点数。
   获取该脚本的网络请求也是异步的，不会阻塞浏览器解析 HTML，一旦网络请求回来之后，如果此时 HTML 还没有解析完，浏览器不会暂停解析并执行 JS 代码，而是等待 HTML 解析完毕再执行 JS 代码
   > 在DOMContentLoaded事件调用前执行
 - 遇到style，解析CSS转成CSSOM，不会停止解析，但是会停止渲染(避免重复渲染)
+
+100. Symbol.iterator
