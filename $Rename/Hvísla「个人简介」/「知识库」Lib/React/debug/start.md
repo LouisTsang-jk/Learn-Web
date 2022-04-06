@@ -21,6 +21,7 @@ ReactDOM.render(<App />, document.querySelector("#app"));
 
 ```
 ## 初次渲染
+- performUnitOfWork
 - useState
   - mountHookTypesDev
   - mountState
@@ -48,3 +49,8 @@ ReactDOM.render(<App />, document.querySelector("#app"));
     - dispatchAction(fiber, queue, action)
       - ...todos
     - 返回[initialState, dispatchAction.bind(null, currentlyRenderingFiber$1, queue)]
+
+- useEffect
+  - mountEffect(create, deps)
+    - mountEffectImpl(Update | Passive, Passive$1, create, deps)
+      - mountWorkInProgressHook
