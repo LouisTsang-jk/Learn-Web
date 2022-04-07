@@ -1,1 +1,1 @@
-# Record learn about Web Front-end  
+学习日志逐步整理归类转移到[louistsang-jk.github.io/](louistsang-jk.github.io/)
