@@ -5,7 +5,7 @@
 ## Core
 [tapable](https://juejin.cn/post/6924597386572464142?utm_source=gold_browser_extension)
 ## loader
-`loader`能让webpack处理非JavaScript文件(webpack只能解析JavaScript)。`loader`将所有类型的文件转换为webpack能处理的有效模块，*然后再利用webpack的打包能力进行处理*。
+`loader`能让webpack处理非JavaScript文件(webpack只能解析JavaScript)。`loader`将所有类型的文件转换为webpack能处理的有效模块，**然后再利用webpack的打包能力进行处理**。
 ## plugin
 + 打包优化
 + 压缩

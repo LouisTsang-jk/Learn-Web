@@ -18,16 +18,29 @@ function compose(middleware) {
   };
 }
 
+function sleep(time) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  });
+}
+
 //
-const middlewareA = (ctx, next) => {
+const middlewareA = async (ctx, next) => {
   console.log("A:before");
-  next();
+  await next();
   console.log("A:after");
 };
 
-const middlewareB = (ctx, next) => {
+const middlewareB = async (ctx, next) => {
   console.log("B:before");
-  next();
+  await sleep(2000);
+  await next();
   console.log("B:after");
 };
-const funcs = compose([middlewareA, middlewareB]);
+const middlewareC = async (ctx, next) => {
+  console.log("C:before");
+  await next();
+  console.log("C:after");
+};
+const funcs = compose([middlewareA, middlewareB, middlewareC]);
+funcs();

@@ -57,7 +57,7 @@ function handlerCallback(){
 
 ## 3. location.hash + iframe 
 ## 4. window.name + iframe
-## 5. poastMessage
+## 5. postMessage
 ### 原理：
 HTML5 XMLHttpRequest Level 2中的API。
 解决：
